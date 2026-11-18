@@ -1,0 +1,62 @@
+Step : Open Blue Ocean – Click the menu (☰) and select Open Blue Ocean to
+use the visual pipeline interface.
+
+Phase 4: Pipeline Creation Using Blue Ocean
+Step : Welcome to Jenkins – Click Create a new Pipeline to start creating your
+first pipeline.
+
+Step : Select Git as the source code management option.
+Step : Enter the local Git repository path and click Create Pipeline.
+
+Step : Click Create Pipeline to manually define the pipeline steps.
+
+Step : Choose Agent: any and proceed to add stages.
+Build Stage Configuration
+Step : Click + Add step under the Build stage.
+
+Step : Select Windows Batch Script as the build step & Add script command –
+Enter echo "Compiling" in the Script box and save the pipeline
+
+Step : Jenkins pipeline was executed successfully, code was checked out from
+Git repository, and build step completed without errors.
+IMPORTANT NOTE:
+In case an error occurs while executing the build stages, please follow the
+steps outlined below.
+Step 1 : Press Windows + R
+Step 2 : Type services.msc
+Step 3 : Find Jenkins
+Step 4 : Right-click → Stop
+Step 5: Go to Search bar and search for Notepad
+Step 6 : Right click Run → as Administrator
+Step 7 : In Notepad → Open File → Go to Jenkins Folder → Find file name
+jenkins.xml → click on it
+Step 8 : Find these line and change it to :
+Line to find :
+<arguments>-Xrs -Xmx256m
+-Dhudson.lifecycle=hudson.lifecycle.WindowsServiceLifecycle</arguments>
+Change to :
+
+<arguments>-Xrs -Xmx256m
+-Dhudson.lifecycle=hudson.lifecycle.WindowsServiceLifecycle
+-Dhudson.plugins.git.GitSCM.ALLOW_LOCAL_CHECKOUT=true</arguments>
+Step 9 : Save and Close Notepad
+Step 10 : Now again press Windows + R and type services.msc
+Step 11 : Find Jenkins → Right Click → Start
+Step 12 : Now ReRun the Pipeline and see that your pipeline is working.
+
+Step : Set up the Test Stage identically to the Build Stage, with the only
+modification being the script content.
+echo "Running Test"
+
+Step : The Test Stage was also successful.
+
+Step : Implement the Deploy Stage using the same procedure as the previous
+stages.
+echo "Deploying Test"
+
+Step : The Deploy Stage was also successful.
+
+Step : Implement the End Stage using the same procedure as the previous
+stages.
+
+Step : The Deploy Stage was also successful.
