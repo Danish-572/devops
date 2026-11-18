@@ -1,0 +1,56 @@
+after catdocker FILE
+3) Add Docker to Windows PATH and restart Jenkins
+
+Add Docker to Windows PATH
+Action: Press Win + R
+Type:
+
+sysdm.cpl
+
+Go to Advanced → Environment Variables
+Under System variables:
+1. Select Path
+2. Click Edit
+3. Click New
+4. Add:
+
+None
+
+None
+
+C:\Users\Admin\AppData\Local\Programs\D
+ockerDesktop\resources\bin
+
+5. Click OK
+6. Click OK
+7. Click OK
+
+Restart Jenkins
+Action: Press Win + R
+Type:
+
+services.msc
+
+Find Jenkins → Right-click → Restart
+
+4) Create a New Jenkins Pipeline
+
+5) In the Jenkins Pipeline configuration, add a Build stage that builds
+the Docker image from the cloned repository.
+Build → Windows Batch Script
+→ where docker
+
+docker --version
+docker build -t my-nginx .
+
+6) Click the + after the Build stage → choose Windows Batch Script.
+→ docker rm -f nginx-container1 >nul 2>&1 & docker run -d -p
+8081:80 --name nginx-container my-nginx
+Name the stage as: Run Docker Container
+
+7) Next stage: Verify the Docker Container. Choose Windows Batch
+Script and enter: docker ps
+
+8) Run the pipeline
+
+9) Verify in terminal and open: http://localhost:8081/
