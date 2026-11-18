@@ -1,0 +1,18 @@
+Step 1: Create Deployment and Check Status:
+->Open Docker, go to Kubernetes, click Create, and copy/paste the commands into your command prompt (cmd):
+kubectl create deployment my-app --image=nginx
+kubectl get all
+
+Step 2: Install and Verify kubectl
+Install or upgrade kubectl and check its client version:
+winget install -e --id Kubernetes.kubectl
+kubectl version --client
+
+Step 3: Expose the Deployment & Port Forward
+Expose the deployment as a NodePort service, check the service details, and set up port forwarding:
+kubectl expose deployment my-app --type=NodePort --port=80
+kubectl get service my-app
+kubectl port-forward service/my-app 8082:80
+
+step4:
+You can access it in your browser at http://localhost:8082
