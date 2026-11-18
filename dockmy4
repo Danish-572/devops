@@ -1,0 +1,67 @@
+# 1. Install WSL through CMD or check if its already installed
+wsl --install
+wsl --staus
+
+
+# 2. Download and install Docker Desktop
+# (Install Docker Desktop for Windows)
+
+
+# 3. Verify Docker installation
+docker --version
+
+
+# 4. Run first container
+docker run hello-world
+
+  MAINN
+  -----
+# 5. Navigate to your working directory:
+cd /C/Users/Admin/Desktop/docker
+
+# 6. Clone your repository:
+git clone https://github.com/Danish-572/docker.git
+
+# 7. Navigate into the cloned directory:
+cd docker
+
+# 8 . List the contents to verify:
+ls
+-------
+# 9: Create and Populate the Dockerfile
+touch Dockerfile
+
+# 10.Add the configuration commands:
+
+echo "FROM nginx:alpine" > Dockerfile
+echo "COPY . /usr/share/nginx/html" >> Dockerfile
+echo "EXPOSE 80" >> Dockerfile 
+
+# 11: open the dockerfile in notepad by:
+open Dockerfile
+
+  #paste this:
+FROM nginx:alpine
+COPY . /usr/share/nginx/html
+EXPOSE 80
+
+  (save and exit)  
+
+#12: verify your dockerfile:
+cat Dockerfile 
+
+#12 Build the docker image
+docker build -t my-nginx .
+
+#13 run and verify the container
+docker run -d -p 8081:80 --name nginx-container1 my-nginx
+
+  #verify it
+  docker ps
+
+#14. Open your browser and navigate to:
+http://localhost:8081
+  
+
+  
+
